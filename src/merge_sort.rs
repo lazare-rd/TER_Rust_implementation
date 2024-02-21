@@ -1,4 +1,4 @@
-fn mergesort(arr: &mut [i32]) {
+pub fn merge_sort(arr: &mut [i32]) {
     if arr.len() == 1 { return; }
     if arr.len() == 2 {
       if arr[0] > arr[1] {
@@ -8,14 +8,14 @@ fn mergesort(arr: &mut [i32]) {
       }
     }
     let p = arr.len() / 2;
-    mergesort(&mut arr[0 .. p]);
-    mergesort(&mut arr[p ..]);
-  
+    merge_sort(&mut arr[0 .. p]);
+    merge_sort(&mut arr[p ..]);
+
     let mut arr2 = vec![0; arr.len()];
     let mut p1 = 0;
     let mut p2 = p;
     let mut f = 0;
-  
+
     loop {
       if p1 < p && p2 < arr.len() {
         if arr[p1] <= arr[p2] {
@@ -36,17 +36,24 @@ fn mergesort(arr: &mut [i32]) {
       }
       f += 1;
     }
-  
+
     f = 0;
     loop {
       arr[f] = arr2[f];
       f += 1;
       if f == arr.len() { break; }
     }
-  }
-  
-  fn main() {
-    let mut arr = [5,9,1,3,4,6,6,3,2, 19, -5, -89];
-    mergesort(&mut arr);
-    println!("{:?}", arr);
-  }
+}
+
+#[cfg(test)]
+mod test {
+    use super::* ;
+
+    #[test]
+    fn merge_sort_test(){
+      let mut arr = [5, 9, 1, 3, 4, 6, 6, 3, 2, 19, -5, -89];
+      let result = [-89, -5, 1, 2, 3, 3, 4, 5, 6, 6, 9, 19];
+      merge_sort(&mut arr);
+      assert_eq!(result, arr);
+    }
+}
