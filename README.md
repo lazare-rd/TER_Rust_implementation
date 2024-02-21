@@ -13,7 +13,7 @@ Tester l'installation avec
 
 En cas de ```command not found``` vérifier que ~/.cargo/bin est bien sur le PATH
 ## Utilisation de cargo
-Se placer dans le directory TER_Rust_Implementation puis :
+Se placer dans le directory TER_Rust_implementation puis :
 * Pour lancer les tests :  ```cargo test```
 * Pour exécuter la fonction main de src/main : ```cargo run```
 * Pour lancer la compilation sans exécuter le main : ```cargo build```
